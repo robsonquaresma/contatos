@@ -1,0 +1,27 @@
+{
+  "name": "contatos",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "~1.18.2",
+    "bootstrap": "^4.0.0",
+    "consign": "^0.1.6",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "express-flash": "0.0.2",
+    "express-load": "^1.1.16",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.0.0",
+    "jade": "~1.11.0",
+    "moment": "^2.20.1",
+    "mongoose": "^5.0.4",
+    "morgan": "~1.9.0",
+    "nodemon": "^1.14.12",
+    "serve-favicon": "~2.4.5"
+  }
+}

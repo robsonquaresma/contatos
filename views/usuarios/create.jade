@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+  h1 Cadastro de Usuários
+  br
+    
+  if messages.erro 
+    div(class='alert alert-danger', role='alert')
+      h3 Erro(s):
+      each msg in messages.erro
+        p #{msg}
+    br
+  
+  form(method="post", action="/usuarios/create", role="form")
+    div(class="form-group")
+      label(for="nome") Nome
+      input(type="text", class="form-control", id="nome", name="nome", value='#{user.nome || ""}', placeholder="Nome", autofocus, required)
+    
+    div(class="form-group")
+      label(for="email") E-mail
+      input(type="email", class='form-control', id='email', name='email', value='#{user.email || ""}', placeholder='E-mail', required) 
+    
+    div(class="form-group")
+      label(for="site") Site
+      input(type="text", class='form-control', id='site', name='site', value='#{user.site || "http://"}') 
+      
+    div(class='form-group')
+      label(for='senha') Senha
+      input(type='password', class='form-control', id='senha', name='senha', placeholder='Senha', required)
+        
+    div(class='form-group') Confirmação da Senha
+      label(for='confirmacao-senha')
+      input(type='password', class='form-control', id='confirmacao_senha', name='confirmacao_senha', placeholder='Confirmação da Senha', required)
+        
+    button(type='submit', class='btn btn-success') Salvar

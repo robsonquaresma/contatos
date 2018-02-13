@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  h1 #{dados.nome}
+  br
+  hr
+  p
+    b E-mail: #{dados.email}
+  p
+    b Site: #{dados.site}
+  p
+    b Data: #{moment(dados.datacad).format('DD/MM/YYYY HH:MM:ss')}
+  br
+  form(method='post', action='/usuarios/remove/#{dados._id}', role='form', id='excluir-form')
+    button(type='submit', class='btn btn-danger') Excluir
+  br
+  a(href='/usuarios', class='btn btn-success') Voltar
+  
+block scripts
+  script(type='text/javascript').
+    $(function(){
+      $('#excluir-form').submit(function(){
+        var pergunta = confirm('Deseja realmente excluir?');
+        
+        if (!pergunta) {
+          return false;
+        }
+      });
+    });
