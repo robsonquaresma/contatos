@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+  h1 Cadastro de Contatos
+  br
+    
+  if messages.erro 
+    div(class='alert alert-danger', role='alert')
+      h3 Erro(s):
+      each msg in messages.erro
+        p #{msg}
+    br
+  
+  form(method="post", action="/contatos/create/#{id}", role="form")
+    div(class="form-group")
+      label(for="tipo") Tipo
+      select(class='form-control', name="tipo", id='tipo', placeholder='Tipo', required)
+        option(value='Residencial') Residencial
+        option(value='Comercial') Comercial
+        option(value='Celular') Celular
+    
+    div(class="form-group")
+      label(for="telefone") Telefone
+      input(type="text", class='form-control', id='telefone', name="telefone", placeholder='Telefone', required) 
+  
+    button(type='submit', class='btn btn-success') Salvar
+
+block scripts
+  script(src='/js/jquery.mask.min.js')
+  script(type='text/javascript').
+    $(document).ready(function() {
+      var SPMaskBehavior = function (val) {
+        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+      },
+      spOptions = {
+        onKeyPress: function(val, e, field, options) {
+            field.mask(SPMaskBehavior.apply({}, arguments), options);
+          }
+      };
+
+      $('input[name="telefone"]').mask(SPMaskBehavior, spOptions);
+    });

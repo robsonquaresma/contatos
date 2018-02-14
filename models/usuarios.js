@@ -15,5 +15,9 @@ module.exports = function() {
     return bcrypt.hashSync(senha, bcrypt.genSaltSync(8), null);
   };
 
+  usuarioSchema.methods.validPassword = function(senha, senha_bd) {
+    return bcrypt.compareSync(senha, senha_bd, null);
+  }
+
   return mongoose.model('usuarios', usuarioSchema);
 }

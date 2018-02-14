@@ -1,0 +1,49 @@
+extends ../layout
+
+block content
+  
+  h1 Amigos
+  a(href='/amigos/create', class="btn btn-lg btn-success", role='button') Cadastrar
+  br
+  br
+  if messages.erro 
+    div(class='alert alert-danger', role='alert')
+      p #{messages.erro}
+    br
+      
+  if messages.info
+    div(class='alert alert-success', role='alert')
+      p #{messages.info}
+      br
+  
+  if lista.length > 0
+    table(class="table table-striped")
+      thead
+        tr
+          th ID:
+          th Nome:
+          th E-mail:
+          th Data:
+          th Ações:
+      tbody
+        each valor in lista
+          tr
+            td #{valor._id}
+            td #{valor.nome}
+            td #{valor.email}
+            td #{moment(valor.datacad).format('DD/MM/YYYY HH:MM:ss')}
+            td
+              a(href='/amigos/edit/#{valor._id}', class='btn btn-primary')
+                span(class='glyphicon glyphicon-pencil')
+                  
+              span &nbsp;
+              
+              a(href='/amigos/remove/#{valor._id}', class='btn btn-danger')
+                span(class='glyphicon glyphicon-trash')
+                  
+              span &nbsp;
+              
+              a(href='/contatos/#{valor._id}', class='btn btn-success')
+                span(class='glyphicon glyphicon-plus')
+  else
+    p Nenhum registro encontrado!

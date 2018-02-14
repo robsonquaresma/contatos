@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  form(method='post', action='/', class='form-login')
+    h3 Entrar no Sistema
+    p Preencha os campos obrigatórios (*)
+    
+    if messages.erro
+      br
+      div(class='alert alert-danger')
+        each msg in messages.erro
+          h4 Erros:
+          #{msg}
+          
+    div(class='form-group')
+      label(for='email') E-mail *
+      input(type='email', class='form-control', name='email', id='email', placeholder='E-mail', required, autofocus) 
+        
+    div(class='form-group')
+      label(for='senha') Senha *
+      input(type='password', class='form-control', name='senha', id='senha', placeholder='Senha', required)
+        
+    button(type='submit', class='btn btn-primary btn-block') Entrar
