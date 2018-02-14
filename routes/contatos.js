@@ -8,4 +8,6 @@ module.exports = function(app) {
   app.route('/contatos/create/:id')
     .get(auth, contato.create)
     .post(auth, contato.store);
+
+  app.route('/contatos/remove/:id/:amigo').post(auth, contato.remove);
 }

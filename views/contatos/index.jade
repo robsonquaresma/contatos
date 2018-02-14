@@ -31,8 +31,34 @@ block content
             td #{valor.tipo}
             td #{valor.telefone}
             td
-              a(href='/contatos/remove/#{valor._id}', class='btn btn-danger')
+              a(href='javascript: remove("#{valor._id}", "#{id}");', class='btn btn-danger')
                 span(class='glyphicon glyphicon-trash')
               
   else
     p Nenhum registro encontrado!
+
+block scripts
+  script(type='text/javascript').
+    function remove (contato, amigo) {
+      var pergunta = confirm ('Deseja realmente excluir?');
+      if (!pergunta) {
+        return false;  
+      }
+      
+      $.ajax({
+        url: '/contatos/remove/' + contato + '/' + amigo,
+        dataType: 'json',
+        type: 'POST',
+        statusCode: {
+          200: function(data) {
+            alert(data);
+            window.location.reload();
+          },
+          
+          400: function(data) {
+            alert(data);
+          }
+        }
+      });
+      
+    }
